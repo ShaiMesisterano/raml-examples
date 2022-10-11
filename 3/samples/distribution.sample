@@ -1,6 +1,0 @@
-fedora:
-  name: Fedora
-  version: 36
-arch:
-  name: Arch Linux
-  version: 2022.10.01
