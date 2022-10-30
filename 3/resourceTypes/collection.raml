@@ -8,13 +8,13 @@ get:
     200:
       body:
         application/json:
-          example: <<exampleCollection>>
+          example: <<exampleSuccess>>
 post:
   description: Requests the creation of a new <<resourcePathName | !singularize>>
   body:
     application/json:
-        type: <<resourcePathName|!singularize>>
-        example: <<exampleItem>>
+      type: <<resourcePathName | !singularize>>
+      examples: <<examplesPostBody>>
   responses:
     204:
       description: The <<resourcePathName | !singularize>> was created successfully

@@ -22,10 +22,10 @@ documentation:
             example:
               -
                 name: Ubuntu
-                version: 22.10
+                version: "22.10"
               -
                 name: Linux Mint
-                version: 21
+                version: "21"
   post:
     description: Requests the creation of a new distribution
     body:
@@ -34,15 +34,14 @@ documentation:
           name:
             type: string
           version:
-            type: number
-            format: float
+            pattern: ^(\d+\.)?(\d+\.)?(\*|\d+)$
         examples:
           fedora:
             name: Fedora
-            version: 36
+            version: "36"
           arch:
             name: Arch Linux
-            version: 2022.10.01
+            version: "2022.10.01"
     responses:
         204:
           description: The distribution was created successfully
