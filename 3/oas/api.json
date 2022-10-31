@@ -1,0 +1,120 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Best Linux Distribution API",
+    "version": "v1",
+    "description": "A voting system for the best Linux distribution"
+  },
+  "servers": [
+    {
+      "url": "https://best.distro/{version}",
+      "variables": {
+        "version": {
+          "default": "version"
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/distributions": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "example": [
+                    {
+                      "name": "Ubuntu",
+                      "version": "22.10"
+                    },
+                    {
+                      "name": "Linux Mint",
+                      "version": "21"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "description": "Returns a list of all distributions",
+        "operationId": "GET_distributions"
+      },
+      "post": {
+        "responses": {
+          "204": {
+            "description": "The distribution was created successfully"
+          }
+        },
+        "description": "Requests the creation of a new distribution",
+        "operationId": "POST_distributions",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "example": {
+                "fedora": {
+                  "name": "Fedora",
+                  "version": "36"
+                },
+                "arch": {
+                  "name": "Arch Linux",
+                  "version": "2022.10.01"
+                }
+              },
+              "schema": {
+                "includePath": "resourceTypes/collection.raml",
+                "$ref": "#/components/schemas/distribution"
+              }
+            }
+          },
+          "required": true
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "distribution": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "pattern": "^(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "version"
+        ]
+      },
+      "vote": {
+        "type": "object",
+        "properties": {
+          "distribution_name": {
+            "type": "string"
+          },
+          "votes": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "distribution_name",
+          "votes"
+        ]
+      }
+    },
+    "responses": {},
+    "parameters": {},
+    "examples": {},
+    "requestBodies": {},
+    "headers": {},
+    "securitySchemes": {},
+    "links": {},
+    "callbacks": {}
+  }
+}
