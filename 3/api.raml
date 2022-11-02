@@ -15,14 +15,14 @@ types:
         type: string
       version:
         pattern: ^(\d+\.)?(\d+\.)?(\*|\d+)$
-        required: true
   vote:
     type: object
     properties:
       distribution_name:
         type: string
-      votes:
+      total:
         type: number
+        required: false
 
 resourceTypes:
   collection: !include resourceTypes/collection.raml
@@ -34,3 +34,10 @@ resourceTypes:
       examplesPostBody:
         fedora: !include samples/distributions/fedora.sample
         arch: !include samples/distributions/arch.sample
+
+/votes:
+  type:
+    collection:
+      exampleSuccess: !include samples/votes/all.sample
+      examplesPostBody:
+        ubuntu: !include samples/votes/ubuntu.sample
